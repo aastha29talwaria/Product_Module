@@ -1,0 +1,50 @@
+{
+  "name": "react-redux-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.8.3",
+    "@material-ui/icons": "^4.5.1",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "react-table": "^7.0.0-rc.15",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "server": "node server/index.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "proxy": "http://localhost:3001",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
+}

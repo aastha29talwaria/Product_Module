@@ -1,0 +1,12 @@
+.side_link {
+    width: 20%;
+    margin: auto auto auto 65%;
+    display: inline-flex;
+}
+
+@media(max-width: 499px) {
+    .side_link {
+        width: 42%;
+        margin: auto;
+    }
+}
