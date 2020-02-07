@@ -7,7 +7,7 @@ export function validateData (field={}) {
     for(var key in field){
         let value = field[key];
         let key_regex = new RegExp(FIELDS_TO_VALIDATE[key]);
-        if(!key_regex.test(value)){
+        if(!value || !key_regex.test(value)){
             errorMessage += key+" is not properly entered."
         }
     }
