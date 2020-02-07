@@ -37,15 +37,15 @@ class ProductList extends Component {
                   <img
                     className={"imageInTable"}
                     src={"http://localhost:3001/static/" + data.product_code} alt={"-"}
-                  />
+                  /><br/>
                   <span>Product Name:</span>
-                  {data.name}<br />
+                  {` ${data.name}`}<br />
                   <span>Product Code:</span>
-                  {data.product_code}<br />
+                  {` ${data.product_code}`}<br />
                   <span>Product Price:</span>
-                  Rs.{data.product_price}<br />
+                  {` Rs. ${data.product_price}`}<br />
                   <span>Status: </span>
-                  {data.active_inactive}<br />
+                  {` ${data.active_inactive}`}<br />
                 </Paper>
               </Grid>
             )

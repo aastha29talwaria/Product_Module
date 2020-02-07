@@ -1,5 +1,5 @@
 export const FIELDS_TO_VALIDATE = {
     name: /^[A-Za-z]+$/,
-    product_code: /^[a-zA-Z0-9]{4,10}$/,
+    product_code: /^[_A-z0-9]*((-|\s)*[_A-z0-9])*$/,
     product_price: /^[0-9]+$/
 }

@@ -57,7 +57,6 @@ if(!this.state.error){
   
   onChange = (evt) => {
     let { id, value } = evt.target || {};
-    debugger;
     if (id === `product_img`) {
       let files = Array.from(evt.target.files);
       let formData = new FormData();

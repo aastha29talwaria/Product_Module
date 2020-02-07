@@ -36,10 +36,8 @@ export function validateData (field={}) {
     if(!sortBy){
         return arrayOfData;
     }
-    debugger;
     sortBy = sortBy==="Price"?"product_price":"name";
     return arrayOfData.sort((a,b) => {
-        debugger;
         return a[sortBy] > b[sortBy]
     });
 
