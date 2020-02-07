@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from "@material-ui/core/Grid";
 import './ProductList.css';
 import { filterData, sortData } from "../../utils/productUtil";
-
+import {node_server_address} from "../../config";
 const classes = makeStyles({
   table: {
     minWidth: 650,
@@ -36,7 +36,7 @@ class ProductList extends Component {
                 <Paper className={classes.paper}>
                   <img
                     className={"imageInTable"}
-                    src={"http://localhost:3001/static/" + data.product_code} alt={"-"}
+                    src={"http://"+node_server_address+"/static/" + data.product_code} alt={"-"}
                   /><br/>
                   <span>Product Name:</span>
                   {` ${data.name}`}<br />
@@ -78,7 +78,7 @@ class ProductList extends Component {
   }
   fetchData(from, to) {
     if (!this.state.data.length) {
-      fetch("http://localhost:3001/getProductsList?from=" + from + "&to=" + to, {
+      fetch("http://"+node_server_address+"/getProductsList?from=" + from + "&to=" + to, {
         method: "GET"
       }).then(res => res.json()).then(data => {
         this.setState({

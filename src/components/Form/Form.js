@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import {
   validateData
 } from "../../utils/productUtil";
+import {node_server_address} from "../../config"
 class Form extends Component {
 
   state = {
@@ -36,7 +37,7 @@ if(!this.state.error){
   
 }
     
-    fetch(`http://localhost:3001/addProduct`, 
+    fetch(`http://${node_server_address}/addProduct`, 
       { 
         method:"POST",
         body: formData
