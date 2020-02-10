@@ -32,13 +32,22 @@ export function validateData (field={}) {
     return array;
  }
 
- export function sortData(arrayOfData=[], sortBy){
+ export function sortData(arrayOfData = [], sortBy){
     if(!sortBy){
         return arrayOfData;
     }
-    sortBy = sortBy==="Price"?"product_price":"name";
-    return arrayOfData.sort((a,b) => {
-        return a[sortBy] > b[sortBy]
-    });
+    let sortBy_prop = (sortBy.indexOf("Price")!==-1)?"product_price":"name";
+    if(sortBy.indexOf("Asc")!== -1){
+        return arrayOfData.sort((a,b) => {
+            return a[sortBy_prop] > b[sortBy_prop]
+        });
+
+    }
+    else {
+        return arrayOfData.sort((a,b) => {
+            return a[sortBy_prop] < b[sortBy_prop]
+        });
+
+    }
 
  }

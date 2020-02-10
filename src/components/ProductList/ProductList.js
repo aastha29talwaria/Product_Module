@@ -17,13 +17,15 @@ class ProductList extends Component {
     data: [],
     searchText: "",
     options: [
-      "Name",
-      "Price"
+      "Name: Asc",
+      "Name: Desc",
+      "Price : Asc",
+      "Price : Desc",
     ],
     nextEnable: true,
     previousEnabled: false,
     currentPage: 1,
-    selectedOption:"Name"
+    selectedOption:"Name: Asc"
   }
   FormRow(data, from, to) {
     let currentRowData = data ? data.slice(from, to) : [];
@@ -64,7 +66,7 @@ class ProductList extends Component {
       currentPage = currentPage + 1;
     } else {
       if ((currentPage - 1) % 3 === 0) {
-        this.fetchData((currentPage - 3) * 9, (currentPage - 1) * 9)
+        this.fetchData((currentPage - 4) * 9, (currentPage - 1) * 9)
       }
       currentPage = currentPage - 1;
     }
@@ -82,7 +84,8 @@ class ProductList extends Component {
         method: "GET"
       }).then(res => res.json()).then(data => {
         this.setState({
-          data
+          data,
+          nextEnable: (!data.data || !data.data.length)?false:true
         })
       }).catch((e) => { console.log(e) });
     }
@@ -102,7 +105,7 @@ class ProductList extends Component {
     }
     data = data.slice(((this.state.currentPage - 1) * 9), (this.state.currentPage * 9))
     data = sortData(data, this.state.selectedOption);
-
+    debugger;
     return (
       <div>
         Sort By:
@@ -114,7 +117,7 @@ class ProductList extends Component {
             })
           }}>
           {this.state.options.map(option => {
-            return (<option>{option}</option>)
+            return (<option key = {option}>{option}</option>)
           })}
         </select>
         <input
@@ -164,7 +167,7 @@ class ProductList extends Component {
           </Grid>) :
           (<div className="NoData_cls">
             No More Data Found.Please, wait for new Stock.<br/>
-            <img className={"imageInTable"} src={"http://localhost:3001/static/nodataFound"} alt={"-"} />
+            <img className={"imageInTable"} src={"http://"+node_server_address+"/static/nodataFound"} alt={"-"} />
             </div>)
         }
       </div>

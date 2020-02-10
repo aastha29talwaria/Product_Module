@@ -21,11 +21,14 @@ class Form extends Component {
     evt.preventDefault();
     let formData = this.state.formData;
 
-if(!this.state.error){
   let validation = validateData(this.state);
     if(!validation.status || !this.state.formData){
+      let errorMessage = validation.errorMessage||"";
+      if(!this.state.formData){
+        errorMessage+= "Image is not uploaded correctly."
+      } 
       this.setState({
-        error: validation.errorMessage
+        error: errorMessage
       });
       return;
     }
@@ -34,15 +37,12 @@ if(!this.state.error){
     formData.append("product_price", this.state.product_price)
     formData.append("name", this.state.name)
     formData.append("active_inactive", this.state.active_inactive)
-  
-}
-    
+    if(!this.state.error)
     fetch(`http://${node_server_address}/addProduct`, 
       { 
         method:"POST",
         body: formData
       }).then(res => {
-        this.setState({error:false})
         console.log(res);
         this.setState({
           name: '',
@@ -51,7 +51,6 @@ if(!this.state.error){
           loading: false,
         })
       }).catch((err) => {
-        this.setState({error:true})
         console.log(err);
       });
   }
@@ -61,19 +60,18 @@ if(!this.state.error){
     if (id === `product_img`) {
       let files = Array.from(evt.target.files);
       let formData = new FormData();
-      
-      files.forEach((file, i)=>{
-        formData.append('product_img', file);
-      });
+      if(files[0].size>4194304){
+        this.setState({
+          error: (this.state.error?this.state.error:"")+" Image Size should be less than equal to 4MB",
+          formData: undefined
+        });
+        return;
+      }
+        formData.append('product_img', files[0]);
       
       this.setState({
         formData 
       });
-      // let value = evt.target.files[0];
-
-      // this.setState({
-      //   [id]: value
-      // });
       
     } else {
       this.setState({
@@ -122,6 +120,7 @@ if(!this.state.error){
             type="file"
             id={`product_img`}
             title="Click to Upload File."
+            accept={"image/*"}
             onChange={this.onChange}
           />
           <span className={`inputLabels`}>Status:</span>
